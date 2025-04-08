@@ -14,8 +14,12 @@ count_class2 = 0
 max_datapoints = 25000
 
 # Читання даних з файлу
-with open(input_file, 'r') as f:
-    for line in f.readlines():
+try:
+    with open(input_file, 'r') as f:
+        for line in f.readlines():
+except FileNotFoundError:
+    print(f"Error: Could not find file '{input_file}'")
+    exit(1)
         if count_class1 >= max_datapoints and count_class2 >= max_datapoints:
             break
         if '?' in line:
